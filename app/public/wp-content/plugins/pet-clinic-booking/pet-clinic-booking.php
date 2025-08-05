@@ -16,6 +16,12 @@ define('PCB_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('PCB_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('PCB_VERSION', '1.0.0');
 
+// Include admin pages
+if (is_admin()) {
+    require_once PCB_PLUGIN_PATH . 'includes/admin-pages.php';
+}
+
+
 class PetClinicBooking {
 
     public function __construct() {
@@ -194,6 +200,9 @@ class PetClinicBooking {
                     include PCB_PLUGIN_PATH . 'templates/admin/add-doctor.php';
                     exit;
                 case 'admin_appointments':
+                    include PCB_PLUGIN_PATH . 'templates/admin/appointments-list.php';
+                    exit;
+                case 'admin_appointments_content':
                     include PCB_PLUGIN_PATH . 'templates/admin/appointments-list.php';
                     exit;
                 case 'admin_appointment_detail':
