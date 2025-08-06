@@ -45,7 +45,7 @@ class PCB_Admin_Pages {
     }
     
     public function appointments_list_page() {
-        include PCB_PLUGIN_PATH . 'templates/admin/appointments-list-content.php';
+        include PCB_PLUGIN_PATH . 'templates/admin/appointments-list.php';
     }
 }
 

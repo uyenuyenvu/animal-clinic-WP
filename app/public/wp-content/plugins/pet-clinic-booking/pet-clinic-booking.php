@@ -160,11 +160,11 @@ class PetClinicBooking {
             'index.php?pcb_page=admin_add_doctor',
             'top'
         );
-        add_rewrite_rule(
-            '^admin/danh-sach-dat-lich/?$',
-            'index.php?pcb_page=admin_appointments',
-            'top'
-        );
+//        add_rewrite_rule(
+//            '^admin/danh-sach-dat-lich/?$',
+//            'index.php?pcb_page=admin_appointments',
+//            'top'
+//        );
         add_rewrite_rule(
             '^admin/appointment-detail/([^/]+)/?$',
             'index.php?pcb_page=admin_appointment_detail&appointment_id=$matches[1]',
