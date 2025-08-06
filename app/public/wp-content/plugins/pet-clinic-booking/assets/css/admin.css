@@ -627,10 +627,14 @@
     margin-left: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .pcb-btn-detail:hover {
     background: #0056b3;
+    color: #fff;
+    text-decoration: none;
 }
 
 .pcb-file-link {
@@ -752,3 +756,4 @@
         justify-content: center;
     }
 }
+

@@ -46,7 +46,7 @@ class PCB_Admin_Pages {
     }
     
     public function enqueue_admin_scripts($hook) {
-        if ('toplevel_page_pcb-appointments' !== $hook && 'pet-clinic_page_pcb-appointment-detail' !== $hook) {
+        if ('toplevel_page_pcb-appointments' !== $hook && 'pet-clinic_page_pcb-appointment-detail' !== $hook && 'pet-clinic_page_pcb-hospital-detail' !== $hook) {
             return;
         }
         
@@ -67,6 +67,13 @@ class PCB_Admin_Pages {
     }
     
     /**
+     * Hospital detail page handler
+     */
+    public function hospital_detail_page() {
+        include PCB_PLUGIN_PATH . 'templates/admin/hospital-detail.php';
+    }
+    
+    /**
      * Register hidden page without adding to menu
      * This allows access to the detail page via direct URL
      */
@@ -78,6 +85,16 @@ class PCB_Admin_Pages {
             'manage_options',
             'pcb-appointment-detail',
             array($this, 'appointment_detail_page')
+        );
+        
+        // Register hospital detail page
+        add_submenu_page(
+            null, // No parent menu
+            '病院詳細',
+            '病院詳細',
+            'manage_options',
+            'pcb-hospital-detail',
+            array($this, 'hospital_detail_page')
         );
     }
 }

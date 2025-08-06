@@ -170,7 +170,7 @@ function formatAddress($address) {
                 <label>病院名:</label>
                 <div class="pcb-field-value">
                     <?php echo esc_html($appointment->referral_hospital ?: '-'); ?>
-                    <button class="pcb-btn-detail">詳細を見る</button>
+                    <a href="<?php echo admin_url('admin.php?page=pcb-hospital-detail&appointment_id=' . $appointment_id); ?>" class="pcb-btn-detail">詳細を見る</a>
                 </div>
             </div>
             <div class="pcb-detail-field">
