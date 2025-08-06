@@ -20,6 +20,7 @@ define('PCB_VERSION', '1.0.0');
 if (is_admin()) {
     require_once PCB_PLUGIN_PATH . 'includes/permissions.php';
     require_once PCB_PLUGIN_PATH . 'includes/admin-pages.php';
+    require_once PCB_PLUGIN_PATH . 'includes/csv-handler.php';
 }
 
 

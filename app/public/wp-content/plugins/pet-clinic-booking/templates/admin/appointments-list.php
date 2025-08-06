@@ -225,46 +225,4 @@ function buildPaginationUrl($page, $params) {
     <?php endif; ?>
 </div>
 
-<?php
-// Handle CSV download
-if (isset($_GET['download']) && $_GET['download'] === 'csv') {
-    // Set headers for CSV download
-    header('Content-Type: text/csv; charset=utf-8');
-    header('Content-Disposition: attachment; filename="appointments_' . date('Y-m-d') . '.csv"');
-    
-    // Create output stream
-    $output = fopen('php://output', 'w');
-    
-    // Add BOM for UTF-8
-    fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
-    
-    // CSV headers
-    fputcsv($output, array('詳細', '受付日時', '予約希望日時', '紹介病院名', '飼主名', '動物名/種', '診療科', '電話番号', 'ステータス'));
-    
-    // Get all appointments for CSV (without pagination)
-    $csv_query = "SELECT * FROM $table_name $where_clause ORDER BY created_at DESC";
-    if (!empty($where_values)) {
-        $csv_query = $wpdb->prepare($csv_query, $where_values);
-    }
-    $csv_appointments = $wpdb->get_results($csv_query);
-    
-    // Add data rows
-    foreach ($csv_appointments as $appointment) {
-        $row = array(
-            '表示',
-            formatDateTime($appointment->created_at),
-            formatDateTime($appointment->preferred_date_1 . ' ' . $appointment->preferred_time_1),
-            $appointment->referral_hospital ?: '-',
-            $appointment->customer_name,
-            $appointment->pet_name . '/' . $appointment->pet_type,
-            $appointment->department,
-            $appointment->customer_phone,
-            getStatusText($appointment->status)
-        );
-        fputcsv($output, $row);
-    }
-    
-    fclose($output);
-    exit;
-}
-?>
+
