@@ -9,9 +9,10 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// Check user permissions
-if (!current_user_can('manage_options')) {
-    wp_die('Không có quyền truy cập.');
+// Check permissions
+if (!PCB_Permissions::can_view_hospital_detail()) {
+    PCB_Permissions::show_access_denied('病院詳細');
+    return;
 }
 
 // Get appointment ID from URL parameter

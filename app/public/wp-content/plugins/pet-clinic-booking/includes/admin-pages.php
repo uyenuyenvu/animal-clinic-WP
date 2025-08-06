@@ -11,10 +11,15 @@ class PCB_Admin_Pages {
     }
     
     public function add_admin_menu() {
+        // Only show menu if user has access
+        if (!PCB_Permissions::can_access_pet_clinic()) {
+            return;
+        }
+        
         add_menu_page(
             '申し込み管理',
             'Pet Clinic',
-            'manage_options',
+            'read', // Use 'read' capability for subscribers
             'pcb-appointments',
             array($this, 'appointments_list_page'),
             'dashicons-calendar-alt',
@@ -25,42 +30,34 @@ class PCB_Admin_Pages {
             'pcb-appointments',
             '申し込み一覧',
             '申し込み一覧',
-            'manage_options',
+            'read', // Use 'read' capability for subscribers
             'pcb-appointments',
             array($this, 'appointments_list_page')
         );
         
-        add_submenu_page(
-            'pcb-appointments',
-            'ドクター一覧',
-            'ドクター一覧',
-            'manage_options',
-            'pcb-doctors',
-            array($this, 'doctors_list_page')
-        );
-        
-        add_submenu_page(
-            'pcb-appointments',
-            'ドクター追加',
-            'ドクター追加',
-            'manage_options',
-            'pcb-add-doctor',
-            array($this, 'add_doctor_page')
-        );
-        
-                // Hidden submenu - removed from display but functionality remains
-        // add_submenu_page(
-        //     'pcb-appointments',
-        //     '申し込み詳細',
-        //     '申し込み詳細',
-        //     'manage_options',
-        //     'pcb-appointment-detail',
-        //     array($this, 'appointment_detail_page')
-        // );
+        // Only show doctor management for administrators
+        if (PCB_Permissions::can_manage_doctors()) {
+            add_submenu_page(
+                'pcb-appointments',
+                'ドクター一覧',
+                'ドクター一覧',
+                'read',
+                'pcb-doctors',
+                array($this, 'doctors_list_page')
+            );
+            
+            add_submenu_page(
+                'pcb-appointments',
+                'ドクター追加',
+                'ドクター追加',
+                'read',
+                'pcb-add-doctor',
+                array($this, 'add_doctor_page')
+            );
+        }
         
         // Register the page without adding it to menu
         add_action('admin_menu', array($this, 'register_hidden_page'), 999);
-
     }
     
     public function enqueue_admin_scripts($hook) {
@@ -77,10 +74,20 @@ class PCB_Admin_Pages {
     }
     
     public function appointments_list_page() {
+        // Check permissions
+        if (!PCB_Permissions::check_access('can_view_appointments', '申し込み一覧')) {
+            return;
+        }
+        
         include PCB_PLUGIN_PATH . 'templates/admin/appointments-list.php';
     }
     
     public function appointment_detail_page() {
+        // Check permissions
+        if (!PCB_Permissions::check_access('can_view_appointment_detail', '申し込み詳細')) {
+            return;
+        }
+        
         include PCB_PLUGIN_PATH . 'templates/admin/appointment-detail.php';
     }
     
@@ -88,6 +95,11 @@ class PCB_Admin_Pages {
      * Doctors list page handler
      */
     public function doctors_list_page() {
+        // Check permissions
+        if (!PCB_Permissions::check_access('can_manage_doctors', 'ドクター一覧')) {
+            return;
+        }
+        
         include PCB_PLUGIN_PATH . 'templates/admin/doctors-list.php';
     }
     
@@ -95,6 +107,11 @@ class PCB_Admin_Pages {
      * Add doctor page handler
      */
     public function add_doctor_page() {
+        // Check permissions
+        if (!PCB_Permissions::check_access('can_add_doctors', 'ドクター追加')) {
+            return;
+        }
+        
         include PCB_PLUGIN_PATH . 'templates/admin/add-doctor.php';
     }
     
@@ -102,6 +119,11 @@ class PCB_Admin_Pages {
      * Hospital detail page handler
      */
     public function hospital_detail_page() {
+        // Check permissions
+        if (!PCB_Permissions::check_access('can_view_hospital_detail', '病院詳細')) {
+            return;
+        }
+        
         include PCB_PLUGIN_PATH . 'templates/admin/hospital-detail.php';
     }
     
@@ -114,7 +136,7 @@ class PCB_Admin_Pages {
             null, // No parent menu
             '申し込み詳細',
             '申し込み詳細',
-            'manage_options',
+            'read', // Use 'read' capability for subscribers
             'pcb-appointment-detail',
             array($this, 'appointment_detail_page')
         );
@@ -124,7 +146,7 @@ class PCB_Admin_Pages {
             null, // No parent menu
             '病院詳細',
             '病院詳細',
-            'manage_options',
+            'read', // Use 'read' capability for subscribers
             'pcb-hospital-detail',
             array($this, 'hospital_detail_page')
         );

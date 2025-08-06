@@ -9,9 +9,10 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// Check user permissions
-if (!current_user_can('manage_options')) {
-    wp_die('Không có quyền truy cập.');
+// Check permissions
+if (!PCB_Permissions::can_manage_doctors()) {
+    PCB_Permissions::show_access_denied('ドクター一覧');
+    return;
 }
 
 // Get doctors data from database

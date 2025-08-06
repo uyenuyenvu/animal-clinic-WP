@@ -1,4 +1,10 @@
 <?php
+// Check permissions
+if (!PCB_Permissions::can_view_appointment_detail()) {
+    PCB_Permissions::show_access_denied('申し込み詳細');
+    return;
+}
+
 // Get appointment ID from URL parameter
 $appointment_id = isset($_GET['appointment_id']) ? intval($_GET['appointment_id']) : 0;
 

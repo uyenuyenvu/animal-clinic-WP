@@ -1,4 +1,10 @@
 <?php
+// Check permissions
+if (!PCB_Permissions::can_view_appointments()) {
+    PCB_Permissions::show_access_denied('申し込み一覧');
+    return;
+}
+
 // Get search parameters from URL
 $hospital_name = isset($_GET['hospital_name']) ? sanitize_text_field($_GET['hospital_name']) : '';
 $owner_name = isset($_GET['owner_name']) ? sanitize_text_field($_GET['owner_name']) : '';
@@ -107,7 +113,9 @@ function buildPaginationUrl($page, $params) {
     <div class="pcb-admin-header">
         <h1>申し込み一覧</h1>
         <div class="pcb-admin-actions">
-            <a href="<?php echo add_query_arg(array_merge($_GET, array('download' => 'csv')), remove_query_arg('page')); ?>" class="pcb-btn pcb-btn-secondary">この一覧をCSVでダウンロード</a>
+            <?php if (PCB_Permissions::can_export_csv()): ?>
+                <a href="<?php echo add_query_arg(array_merge($_GET, array('download' => 'csv')), remove_query_arg('page')); ?>" class="pcb-btn pcb-btn-secondary">この一覧をCSVでダウンロード</a>
+            <?php endif; ?>
         </div>
     </div>
 

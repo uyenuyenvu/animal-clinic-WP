@@ -8,9 +8,10 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// Check user permissions
-if (!current_user_can('manage_options')) {
-    wp_die('Không có quyền truy cập.');
+// Check permissions
+if (!PCB_Permissions::can_add_doctors()) {
+    PCB_Permissions::show_access_denied('ドクター追加');
+    return;
 }
 
 // Handle form submission
