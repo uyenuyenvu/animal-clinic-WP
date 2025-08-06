@@ -30,14 +30,19 @@ class PCB_Admin_Pages {
             array($this, 'appointments_list_page')
         );
         
-        add_submenu_page(
-            'pcb-appointments',
-            '申し込み詳細',
-            '申し込み詳細',
-            'manage_options',
-            'pcb-appointment-detail',
-            array($this, 'appointment_detail_page')
-        );
+                // Hidden submenu - removed from display but functionality remains
+        // add_submenu_page(
+        //     'pcb-appointments',
+        //     '申し込み詳細',
+        //     '申し込み詳細',
+        //     'manage_options',
+        //     'pcb-appointment-detail',
+        //     array($this, 'appointment_detail_page')
+        // );
+        
+        // Register the page without adding it to menu
+        add_action('admin_menu', array($this, 'register_hidden_page'), 999);
+
     }
     
     public function enqueue_admin_scripts($hook) {
@@ -59,6 +64,21 @@ class PCB_Admin_Pages {
     
     public function appointment_detail_page() {
         include PCB_PLUGIN_PATH . 'templates/admin/appointment-detail.php';
+    }
+    
+    /**
+     * Register hidden page without adding to menu
+     * This allows access to the detail page via direct URL
+     */
+    public function register_hidden_page() {
+        add_submenu_page(
+            null, // No parent menu
+            '申し込み詳細',
+            '申し込み詳細',
+            'manage_options',
+            'pcb-appointment-detail',
+            array($this, 'appointment_detail_page')
+        );
     }
 }
 
