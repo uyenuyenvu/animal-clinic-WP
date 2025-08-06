@@ -30,6 +30,24 @@ class PCB_Admin_Pages {
             array($this, 'appointments_list_page')
         );
         
+        add_submenu_page(
+            'pcb-appointments',
+            'ドクター一覧',
+            'ドクター一覧',
+            'manage_options',
+            'pcb-doctors',
+            array($this, 'doctors_list_page')
+        );
+        
+        add_submenu_page(
+            'pcb-appointments',
+            'ドクター追加',
+            'ドクター追加',
+            'manage_options',
+            'pcb-add-doctor',
+            array($this, 'add_doctor_page')
+        );
+        
                 // Hidden submenu - removed from display but functionality remains
         // add_submenu_page(
         //     'pcb-appointments',
@@ -46,7 +64,7 @@ class PCB_Admin_Pages {
     }
     
     public function enqueue_admin_scripts($hook) {
-        if ('toplevel_page_pcb-appointments' !== $hook && 'pet-clinic_page_pcb-appointment-detail' !== $hook && 'pet-clinic_page_pcb-hospital-detail' !== $hook) {
+        if ('toplevel_page_pcb-appointments' !== $hook && 'pet-clinic_page_pcb-appointment-detail' !== $hook && 'pet-clinic_page_pcb-hospital-detail' !== $hook && 'pet-clinic_page_pcb-doctors' !== $hook && 'pet-clinic_page_pcb-add-doctor' !== $hook) {
             return;
         }
         
@@ -64,6 +82,20 @@ class PCB_Admin_Pages {
     
     public function appointment_detail_page() {
         include PCB_PLUGIN_PATH . 'templates/admin/appointment-detail.php';
+    }
+    
+    /**
+     * Doctors list page handler
+     */
+    public function doctors_list_page() {
+        include PCB_PLUGIN_PATH . 'templates/admin/doctors-list.php';
+    }
+    
+    /**
+     * Add doctor page handler
+     */
+    public function add_doctor_page() {
+        include PCB_PLUGIN_PATH . 'templates/admin/add-doctor.php';
     }
     
     /**

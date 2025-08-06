@@ -8,6 +8,12 @@
 if (!defined('ABSPATH')) {
     exit;
 }
+
+// Check user permissions
+if (!current_user_can('manage_options')) {
+    wp_die('Không có quyền truy cập.');
+}
+
 // Get appointment ID from URL parameter
 $appointment_id = isset($_GET['appointment_id']) ? intval($_GET['appointment_id']) : 0;
 
@@ -16,22 +22,22 @@ if (!$appointment_id) {
     return;
 }
 
-// Sample hospital data (temporary)
-$hospital_data = array(
-    'hospital_name' => 'サンプル動物病院',
-    'director_name' => '山田 太郎',
-    'doctor_in_charge' => '佐藤 花子',
-    'email' => 'yamada@example.com',
-    'email_confirm' => 'yamada@example.com',
-    'postal_code' => '〒100-0001',
-    'password' => '**********',
-    'prefecture' => '東京都',
-    'city' => '千代田区',
-    'street_address' => '1-1-1 サンプルビル 3F',
-    'phone_number' => '03-1234-5678',
-    'emergency_phone' => '03-8765-4321',
-    'fax_number' => '03-1234-5679'
-);
+// Get plugin instance to access helper functions
+$plugin = new PetClinicBooking();
+
+// Get appointment and doctor data
+$appointment_data = $plugin->get_appointment_detail($appointment_id);
+$doctor_id = $appointment_data ? $appointment_data->doctor_id : 0;
+$doctor_data = $doctor_id ? $plugin->get_doctor_detail($doctor_id) : null;
+
+// Get hospital data from appointment
+$hospital_data = $plugin->get_hospital_data_from_appointment($appointment_data);
+
+// If no appointment found, show error
+if (!$appointment_data) {
+    echo '<div class="wrap"><h1>エラー</h1><p>指定された申し込みが見つかりません。</p></div>';
+    return;
+}
 ?>
 
 <div class="pcb-admin-container">
@@ -168,9 +174,11 @@ $hospital_data = array(
     text-decoration: none;
 }
 
-
-.pcb-detail-section {
-    margin-bottom: 30px;
+.pcb-content {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
 }
 
 .pcb-detail-section h3 {
@@ -194,6 +202,7 @@ $hospital_data = array(
     gap: 30px;
 }
 
+
 .pcb-detail-field {
     display: block;
 }
@@ -204,7 +213,22 @@ $hospital_data = array(
     font-size: 14px;
 }
 
+.pcb-field-value {
+    padding: 12px 16px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    color: #333;
+    font-size: 14px;
+    min-height: 20px;
+}
 
+.pcb-field-note {
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 4px;
+    font-style: italic;
+}
 
 @media (max-width: 768px) {
     .pcb-detail-grid {
@@ -217,9 +241,6 @@ $hospital_data = array(
         gap: 15px;
         align-items: flex-start;
     }
-    
-    .pcb-detail-card {
-        padding: 20px;
-    }
+
 }
 </style> 
