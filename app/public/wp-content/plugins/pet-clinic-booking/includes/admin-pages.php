@@ -29,10 +29,19 @@ class PCB_Admin_Pages {
             'pcb-appointments',
             array($this, 'appointments_list_page')
         );
+        
+        add_submenu_page(
+            'pcb-appointments',
+            '申し込み詳細',
+            '申し込み詳細',
+            'manage_options',
+            'pcb-appointment-detail',
+            array($this, 'appointment_detail_page')
+        );
     }
     
     public function enqueue_admin_scripts($hook) {
-        if ('toplevel_page_pcb-appointments' !== $hook) {
+        if ('toplevel_page_pcb-appointments' !== $hook && 'pet-clinic_page_pcb-appointment-detail' !== $hook) {
             return;
         }
         
@@ -46,6 +55,10 @@ class PCB_Admin_Pages {
     
     public function appointments_list_page() {
         include PCB_PLUGIN_PATH . 'templates/admin/appointments-list.php';
+    }
+    
+    public function appointment_detail_page() {
+        include PCB_PLUGIN_PATH . 'templates/admin/appointment-detail.php';
     }
 }
 

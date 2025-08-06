@@ -160,11 +160,11 @@ class PetClinicBooking {
             'index.php?pcb_page=admin_add_doctor',
             'top'
         );
-//        add_rewrite_rule(
-//            '^admin/danh-sach-dat-lich/?$',
-//            'index.php?pcb_page=admin_appointments',
-//            'top'
-//        );
+       add_rewrite_rule(
+           '^admin/danh-sach-dat-lich/?$',
+           'index.php?pcb_page=admin_appointments',
+           'top'
+       );
         add_rewrite_rule(
             '^admin/appointment-detail/([^/]+)/?$',
             'index.php?pcb_page=admin_appointment_detail&appointment_id=$matches[1]',
@@ -200,13 +200,10 @@ class PetClinicBooking {
                     include PCB_PLUGIN_PATH . 'templates/admin/add-doctor.php';
                     exit;
                 case 'admin_appointments':
-                    include PCB_PLUGIN_PATH . 'templates/admin/appointments-list.php';
-                    exit;
-                case 'admin_appointments_content':
-                    include PCB_PLUGIN_PATH . 'templates/admin/appointments-list.php';
+                    include PCB_PLUGIN_PATH . 'templates/admin/appointments-list-bk.php';
                     exit;
                 case 'admin_appointment_detail':
-                    include PCB_PLUGIN_PATH . 'templates/admin/appointment-detail.php';
+                    include PCB_PLUGIN_PATH . 'templates/admin/appointment-detail-bk.php';
                     exit;
             }
         }
