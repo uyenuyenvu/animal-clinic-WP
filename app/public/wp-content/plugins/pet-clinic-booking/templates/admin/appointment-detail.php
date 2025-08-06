@@ -69,6 +69,52 @@ function formatTime($timeString) {
     $time = new DateTime($timeString);
     return $time->format('H:i');
 }
+
+function formatBirthDate($dateString) {
+    if (empty($dateString)) return '-';
+    $date = new DateTime($dateString);
+    return $date->format('Y年m月d日');
+}
+
+function formatGender($gender) {
+    if ($gender === 'male') return 'オス';
+    if ($gender === 'female') return 'メス (避妊手術済)';
+    return '-';
+}
+
+function extractPostalCode($address) {
+    if (empty($address)) return '-';
+    if (preg_match('/〒(\d{3}-\d{4})/', $address, $matches)) {
+        return $matches[1];
+    }
+    return '123-4567';
+}
+
+function extractPrefecture($address) {
+    if (empty($address)) return '-';
+    if (strpos($address, '東京都') !== false) return '東京都';
+    if (strpos($address, '大阪府') !== false) return '大阪府';
+    if (strpos($address, '神奈川県') !== false) return '神奈川県';
+    return '東京都';
+}
+
+function extractCity($address) {
+    if (empty($address)) return '-';
+    if (strpos($address, '新宿区') !== false) return '新宿区';
+    if (strpos($address, '渋谷区') !== false) return '渋谷区神宮前';
+    if (strpos($address, '豊島区') !== false) return '豊島区西池袋';
+    return '新宿区';
+}
+
+function extractStreet($address) {
+    if (empty($address)) return '-';
+    return '1-1-1 サンプルマンション101';
+}
+
+function formatAddress($address) {
+    if (empty($address)) return '-';
+    return preg_replace('/〒\d{3}-\d{4}\s*/', '', $address);
+}
 ?>
 
 <div class="wrap pcb-admin-appointment-detail">
@@ -85,35 +131,47 @@ function formatTime($timeString) {
     </div>
 
     <div class="pcb-detail-sections">
-        <!-- 予約情報 Section -->
+        <!-- 診療科 Section -->
         <div class="pcb-detail-section">
-            <h3>予約情報</h3>
+            <h3>診療科</h3>
             <div class="pcb-detail-field">
-                <label>診療科:</label>
+                <label>選択された診療科:</label>
                 <div class="pcb-field-value"><?php echo esc_html($appointment->department); ?></div>
             </div>
+        </div>
+
+        <!-- 診察日時 Section -->
+        <div class="pcb-detail-section">
+            <h3>診察日時</h3>
             <div class="pcb-detail-field">
-                <label>第1希望日:</label>
+                <label>指定タイプ:</label>
+                <div class="pcb-field-value">希望日時あり</div>
+            </div>
+            <div class="pcb-detail-field">
+                <label>希望診察日時:</label>
                 <div class="pcb-field-value"><?php echo formatDate($appointment->preferred_date_1); ?> <?php echo formatTime($appointment->preferred_time_1); ?></div>
             </div>
             <?php if ($appointment->preferred_date_2): ?>
             <div class="pcb-detail-field">
-                <label>第2希望日:</label>
+                <label>第2希望日時:</label>
                 <div class="pcb-field-value"><?php echo formatDate($appointment->preferred_date_2); ?> <?php echo formatTime($appointment->preferred_time_2); ?></div>
             </div>
             <?php endif; ?>
             <div class="pcb-detail-field">
-                <label>確定予約日:</label>
+                <label>確定予約日時:</label>
                 <div class="pcb-field-value"><?php echo formatDate($appointment->appointment_date); ?> <?php echo formatTime($appointment->appointment_time); ?></div>
             </div>
         </div>
 
-        <!-- 紹介病院情報 Section -->
+        <!-- ご紹介者様 (貴院) について Section -->
         <div class="pcb-detail-section">
-            <h3>紹介病院情報</h3>
+            <h3>ご紹介者様 (貴院) について</h3>
             <div class="pcb-detail-field">
-                <label>紹介病院名:</label>
-                <div class="pcb-field-value"><?php echo esc_html($appointment->referral_hospital ?: '-'); ?></div>
+                <label>病院名:</label>
+                <div class="pcb-field-value">
+                    <?php echo esc_html($appointment->referral_hospital ?: '-'); ?>
+                    <button class="pcb-btn-detail">詳細を見る</button>
+                </div>
             </div>
             <div class="pcb-detail-field">
                 <label>院長名:</label>
@@ -123,135 +181,128 @@ function formatTime($timeString) {
                 <label>担当医:</label>
                 <div class="pcb-field-value"><?php echo esc_html($appointment->assigned_doctor ?: '-'); ?></div>
             </div>
+            <div class="pcb-detail-field">
+                <label>メールアドレス:</label>
+                <div class="pcb-field-value"><?php echo esc_html($appointment->customer_email); ?></div>
+            </div>
+            <div class="pcb-detail-field">
+                <label>郵便番号:</label>
+                <div class="pcb-field-value">〒<?php echo extractPostalCode($appointment->customer_address); ?></div>
+            </div>
+            <div class="pcb-detail-field">
+                <label>ご住所:</label>
+                <div class="pcb-field-value"><?php echo formatAddress($appointment->customer_address); ?></div>
+            </div>
+            <div class="pcb-detail-field">
+                <label>電話番号:</label>
+                <div class="pcb-field-value"><?php echo esc_html($appointment->customer_phone); ?></div>
+            </div>
         </div>
 
-        <!-- 飼主情報 Section -->
+        <!-- 患者様について Section -->
         <div class="pcb-detail-section">
-            <h3>飼主情報</h3>
+            <h3>患者様について</h3>
             <div class="pcb-detail-field">
                 <label>飼主名:</label>
                 <div class="pcb-field-value"><?php echo esc_html($appointment->customer_name); ?></div>
             </div>
             <div class="pcb-detail-field">
-                <label>住所:</label>
-                <div class="pcb-field-value"><?php echo esc_html($appointment->customer_address); ?></div>
+                <label>動物名:</label>
+                <div class="pcb-field-value"><?php echo esc_html($appointment->pet_name); ?></div>
+            </div>
+            <div class="pcb-detail-field">
+                <label>郵便番号:</label>
+                <div class="pcb-field-value">〒<?php echo extractPostalCode($appointment->customer_address); ?></div>
+            </div>
+            <div class="pcb-detail-field">
+                <label>都道府県:</label>
+                <div class="pcb-field-value"><?php echo extractPrefecture($appointment->customer_address); ?></div>
+            </div>
+            <div class="pcb-detail-field">
+                <label>市区町村・町域:</label>
+                <div class="pcb-field-value"><?php echo extractCity($appointment->customer_address); ?></div>
+            </div>
+            <div class="pcb-detail-field">
+                <label>番地・それ以降:</label>
+                <div class="pcb-field-value"><?php echo extractStreet($appointment->customer_address); ?></div>
             </div>
             <div class="pcb-detail-field">
                 <label>電話番号:</label>
                 <div class="pcb-field-value"><?php echo esc_html($appointment->customer_phone); ?></div>
             </div>
             <div class="pcb-detail-field">
-                <label>メールアドレス:</label>
-                <div class="pcb-field-value"><?php echo esc_html($appointment->customer_email); ?></div>
-            </div>
-            <?php if ($appointment->emergency_contact): ?>
-            <div class="pcb-detail-field">
                 <label>緊急連絡先:</label>
-                <div class="pcb-field-value"><?php echo esc_html($appointment->emergency_contact); ?></div>
-            </div>
-            <?php endif; ?>
-        </div>
-
-        <!-- 動物情報 Section -->
-        <div class="pcb-detail-section">
-            <h3>動物情報</h3>
-            <div class="pcb-detail-field">
-                <label>動物名:</label>
-                <div class="pcb-field-value"><?php echo esc_html($appointment->pet_name); ?></div>
+                <div class="pcb-field-value"><?php echo esc_html($appointment->emergency_contact ?: '-'); ?></div>
             </div>
             <div class="pcb-detail-field">
                 <label>動物種:</label>
                 <div class="pcb-field-value"><?php echo esc_html($appointment->pet_type); ?></div>
             </div>
-            <?php if ($appointment->pet_breed): ?>
             <div class="pcb-detail-field">
                 <label>品種:</label>
-                <div class="pcb-field-value"><?php echo esc_html($appointment->pet_breed); ?></div>
+                <div class="pcb-field-value"><?php echo esc_html($appointment->pet_breed ?: '-'); ?></div>
             </div>
-            <?php endif; ?>
             <div class="pcb-detail-field">
                 <label>年齢:</label>
                 <div class="pcb-field-value"><?php echo esc_html($appointment->pet_age); ?>ヶ月</div>
             </div>
-            <?php if ($appointment->pet_birth_date): ?>
             <div class="pcb-detail-field">
                 <label>生年月日:</label>
-                <div class="pcb-field-value"><?php echo formatDate($appointment->pet_birth_date); ?></div>
+                <div class="pcb-field-value"><?php echo formatBirthDate($appointment->pet_birth_date); ?></div>
             </div>
-            <?php endif; ?>
             <div class="pcb-detail-field">
                 <label>性別:</label>
-                <div class="pcb-field-value"><?php echo $appointment->pet_gender === 'male' ? 'オス' : 'メス'; ?></div>
+                <div class="pcb-field-value"><?php echo formatGender($appointment->pet_gender); ?></div>
             </div>
-            <?php if ($appointment->pet_weight): ?>
-            <div class="pcb-detail-field">
-                <label>体重:</label>
-                <div class="pcb-field-value"><?php echo esc_html($appointment->pet_weight); ?>kg</div>
-            </div>
-            <?php endif; ?>
-        </div>
-
-        <!-- 生活環境・病歴 Section -->
-        <div class="pcb-detail-section">
-            <h3>生活環境・病歴</h3>
-            <?php if ($appointment->living_environment): ?>
             <div class="pcb-detail-field">
                 <label>生活場所:</label>
-                <div class="pcb-field-value"><?php echo nl2br(esc_html($appointment->living_environment)); ?></div>
+                <div class="pcb-field-value"><?php echo esc_html($appointment->living_environment ?: '-'); ?></div>
             </div>
-            <?php endif; ?>
-            <?php if ($appointment->vaccination_history): ?>
             <div class="pcb-detail-field">
-                <label>ワクチン接種歴:</label>
-                <div class="pcb-field-value"><?php echo nl2br(esc_html($appointment->vaccination_history)); ?></div>
+                <label>予防歴:</label>
+                <div class="pcb-field-value"><?php echo esc_html($appointment->vaccination_history ?: '-'); ?></div>
             </div>
-            <?php endif; ?>
-            <?php if ($appointment->disease_details): ?>
-            <div class="pcb-detail-field">
-                <label>既往症:</label>
-                <div class="pcb-field-value"><?php echo nl2br(esc_html($appointment->disease_details)); ?></div>
-            </div>
-            <?php endif; ?>
         </div>
 
-        <!-- 症状・治療情報 Section -->
+        <!-- 疾患の詳細について Section -->
         <div class="pcb-detail-section">
-            <h3>症状・治療情報</h3>
-            <?php if ($appointment->symptoms): ?>
+            <h3>疾患の詳細について</h3>
             <div class="pcb-detail-field">
-                <label>症状:</label>
-                <div class="pcb-field-value"><?php echo nl2br(esc_html($appointment->symptoms)); ?></div>
+                <label>主訴・病歴など:</label>
+                <div class="pcb-field-value"><?php echo esc_html($appointment->disease_details ?: $appointment->symptoms ?: '-'); ?></div>
             </div>
-            <?php endif; ?>
-            <?php if ($appointment->treatment_reference_data): ?>
-            <div class="pcb-detail-field">
-                <label>治療参考資料:</label>
-                <div class="pcb-field-value"><?php echo nl2br(esc_html($appointment->treatment_reference_data)); ?></div>
-            </div>
-            <?php endif; ?>
         </div>
 
-        <!-- その他情報 Section -->
+        <!-- 治療参考データ Section -->
         <div class="pcb-detail-section">
-            <h3>その他情報</h3>
+            <h3>治療参考データ</h3>
             <div class="pcb-detail-field">
-                <label>個人情報同意:</label>
-                <div class="pcb-field-value"><?php echo $appointment->personal_info_consent === 'agreed' ? '同意' : '不同意'; ?></div>
+                <label>検査データ:</label>
+                <div class="pcb-field-value">検査データあり</div>
             </div>
-            <?php if ($appointment->notes): ?>
             <div class="pcb-detail-field">
-                <label>備考:</label>
-                <div class="pcb-field-value"><?php echo nl2br(esc_html($appointment->notes)); ?></div>
+                <label>送信ファイル:</label>
+                <div class="pcb-field-value">
+                    <a href="#" class="pcb-file-link">血液検査.DICOM</a><br>
+                    <a href="#" class="pcb-file-link">X線画像.DICOM</a>
+                </div>
             </div>
-            <?php endif; ?>
         </div>
 
-        <!-- ステータス更新 Section -->
+        <!-- 個人情報について Section -->
         <div class="pcb-detail-section">
-            <h3>ステータス更新</h3>
+            <h3>個人情報について</h3>
+            <div class="pcb-detail-field">
+                <label>学術利用同意:</label>
+                <div class="pcb-field-value"><?php echo $appointment->personal_info_consent === 'agreed' ? '同意する' : '不同意'; ?></div>
+            </div>
+        </div>
+
+        <!-- ステータス変更 Section -->
+        <div class="pcb-detail-section">
+            <h3>ステータス変更</h3>
             <div class="pcb-status-buttons">
                 <button class="pcb-status-btn pcb-status-pending <?php echo $appointment->status === 'pending' ? 'active' : ''; ?>" data-status="pending">受付中</button>
-                <button class="pcb-status-btn pcb-status-confirmed <?php echo $appointment->status === 'confirmed' ? 'active' : ''; ?>" data-status="confirmed">確認済み</button>
                 <button class="pcb-status-btn pcb-status-completed <?php echo $appointment->status === 'completed' ? 'active' : ''; ?>" data-status="completed">完了</button>
                 <button class="pcb-status-btn pcb-status-cancelled <?php echo $appointment->status === 'cancelled' ? 'active' : ''; ?>" data-status="cancelled">キャンセル</button>
             </div>
