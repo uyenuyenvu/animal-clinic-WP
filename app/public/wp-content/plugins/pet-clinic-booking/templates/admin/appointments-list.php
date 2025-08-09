@@ -18,17 +18,17 @@ $where_conditions = array();
 $where_values = array();
 
 if (!empty($hospital_name)) {
-    $where_conditions[] = "referral_hospital LIKE %s";
+    $where_conditions[] = "referrer_clinic_name  LIKE %s";
     $where_values[] = '%' . $hospital_name . '%';
 }
 
 if (!empty($owner_name)) {
-    $where_conditions[] = "customer_name LIKE %s";
+    $where_conditions[] = "owner_name LIKE %s";
     $where_values[] = '%' . $owner_name . '%';
 }
 
 if (!empty($doctor_name)) {
-    $where_conditions[] = "(hospital_director LIKE %s OR assigned_doctor LIKE %s)";
+    $where_conditions[] = "(referrer_director_name LIKE %s OR referrer_doctor_name LIKE %s)";
     $where_values[] = '%' . $doctor_name . '%';
     $where_values[] = '%' . $doctor_name . '%';
 }
@@ -45,7 +45,7 @@ if (!empty($where_conditions)) {
 
 // Get total count for pagination
 global $wpdb;
-$table_name = $wpdb->prefix . 'pcb_bookings';
+$table_name = $wpdb->prefix . 'clinic_reservations';
 
 $count_query = "SELECT COUNT(*) FROM $table_name $where_clause";
 if (!empty($where_values)) {
@@ -175,12 +175,12 @@ function buildPaginationUrl($page, $params) {
                             <a href="<?php echo admin_url('admin.php?page=pcb-appointment-detail&appointment_id=' . $appointment->id); ?>" class="pcb-detail-link">表示</a>
                         </td>
                         <td><?php echo formatDateTime($appointment->created_at); ?></td>
-                        <td><?php echo formatDateTime($appointment->preferred_date_1 . ' ' . $appointment->preferred_time_1); ?></td>
-                        <td><?php echo esc_html($appointment->referral_hospital ?: '-'); ?></td>
-                        <td><?php echo esc_html($appointment->customer_name); ?></td>
-                        <td><?php echo esc_html($appointment->pet_name . '/' . $appointment->pet_type); ?></td>
+                        <td><?php echo formatDateTime($appointment->first_choice_date . ' ' . $appointment->first_choice_time); ?></td>
+                        <td><?php echo esc_html($appointment->referrer_clinic_name ?: '-'); ?></td>
+                        <td><?php echo esc_html($appointment->owner_name); ?></td>
+                        <td><?php echo esc_html($appointment->pet_name . '/' . $appointment->animal_type); ?></td>
                         <td><?php echo esc_html($appointment->department); ?></td>
-                        <td><?php echo esc_html($appointment->customer_phone); ?></td>
+                        <td><?php echo esc_html($appointment->owner_phone); ?></td>
                         <td>
                             <span class="pcb-status <?php echo getStatusClass($appointment->status); ?>">
                                 <?php echo getStatusText($appointment->status); ?>

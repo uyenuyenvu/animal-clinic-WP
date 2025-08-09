@@ -38,7 +38,34 @@ class PetClinicBooking {
         // Add rewrite rules for custom pages
         add_action('init', array($this, 'add_rewrite_rules'));
         add_filter('query_vars', array($this, 'add_query_vars'));
+
+        add_action('wp_ajax_pcb_admin_update_appointment_status', array($this, 'ajax_admin_update_appointment_status'));
     }
+
+    public function ajax_admin_update_appointment_status() {
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('Not authorized.');
+        }
+
+        global $wpdb;
+        $appointment_id = intval($_POST['appointment_id']);
+        $status = sanitize_text_field($_POST['status']);
+
+        $result = $wpdb->update(
+            $wpdb->prefix . 'clinic_reservations',
+            array('status' => $status),
+            array('id' => $appointment_id),
+            array('%s'),
+            array('%d')
+        );
+
+        if ($result !== false) {
+            wp_send_json_success('Update status successfully!');
+        } else {
+            wp_send_json_error('Error updating status.');
+        }
+    }
+
 
     public function activate() {
         flush_rewrite_rules();

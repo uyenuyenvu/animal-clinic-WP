@@ -50,17 +50,17 @@ class PCB_CSV_Handler {
         $where_values = array();
         
         if (!empty($hospital_name)) {
-            $where_conditions[] = "referral_hospital LIKE %s";
+            $where_conditions[] = "referrer_clinic_name LIKE %s";
             $where_values[] = '%' . $hospital_name . '%';
         }
         
         if (!empty($owner_name)) {
-            $where_conditions[] = "customer_name LIKE %s";
+            $where_conditions[] = "owner_name LIKE %s";
             $where_values[] = '%' . $owner_name . '%';
         }
         
         if (!empty($doctor_name)) {
-            $where_conditions[] = "(hospital_director LIKE %s OR assigned_doctor LIKE %s)";
+            $where_conditions[] = "(referrer_director_name LIKE %s OR referrer_doctor_name LIKE %s)";
             $where_values[] = '%' . $doctor_name . '%';
             $where_values[] = '%' . $doctor_name . '%';
         }
@@ -102,12 +102,12 @@ class PCB_CSV_Handler {
             $row = array(
                 '表示',
                 $this->formatDateTime($appointment->created_at),
-                $this->formatDateTime($appointment->preferred_date_1 . ' ' . $appointment->preferred_time_1),
-                $appointment->referral_hospital ?: '-',
-                $appointment->customer_name,
-                $appointment->pet_name . '/' . $appointment->pet_type,
+                $this->formatDateTime($appointment->first_choice_date . ' ' . $appointment->first_choice_time),
+                $appointment->referrer_clinic_name ?: '-',
+                $appointment->owner_name,
+                $appointment->pet_name . '/' . $appointment->animal_type,
                 $appointment->department,
-                $appointment->customer_phone,
+                $appointment->owner_phone,
                 $this->getStatusText($appointment->status)
             );
             fputcsv($output, $row);
