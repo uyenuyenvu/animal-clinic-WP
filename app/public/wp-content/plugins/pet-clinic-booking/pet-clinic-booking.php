@@ -111,7 +111,7 @@ class PetClinicBooking {
      */
     public function get_appointment_detail($appointment_id) {
         global $wpdb;
-        $table_bookings = $wpdb->prefix . 'pcb_bookings';
+        $table_bookings = $wpdb->prefix . 'clinic_reservations';
         
         $appointment = $wpdb->get_row($wpdb->prepare(
             "SELECT * FROM $table_bookings WHERE id = %d",
@@ -128,7 +128,7 @@ class PetClinicBooking {
      */
     public function get_doctor_detail($doctor_id) {
         global $wpdb;
-        $table_doctors = $wpdb->prefix . 'pcb_doctors';
+        $table_doctors = $wpdb->prefix . 'clinic_clinics';
         
         $doctor = $wpdb->get_row($wpdb->prepare(
             "SELECT * FROM $table_doctors WHERE id = %d",
