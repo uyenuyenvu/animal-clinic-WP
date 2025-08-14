@@ -58,6 +58,18 @@ class PCB_Admin_Pages {
         
         // Register the page without adding it to menu
         add_action('admin_menu', array($this, 'register_hidden_page'), 999);
+        
+        // Add debug page for development
+        if (defined('WP_DEBUG') && WP_DEBUG) {
+            add_submenu_page(
+                'pcb-appointments',
+                'Debug Permissions',
+                'Debug Permissions',
+                'read',
+                'pcb-debug-permissions',
+                array($this, 'debug_permissions_page')
+            );
+        }
     }
     
     public function enqueue_admin_scripts($hook) {
@@ -125,6 +137,13 @@ class PCB_Admin_Pages {
         }
         
         include PCB_PLUGIN_PATH . 'templates/admin/hospital-detail.php';
+    }
+    
+    /**
+     * Debug permissions page
+     */
+    public function debug_permissions_page() {
+        include PCB_PLUGIN_PATH . 'debug-permissions.php';
     }
     
     /**

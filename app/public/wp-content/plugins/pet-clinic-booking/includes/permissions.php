@@ -144,8 +144,9 @@ class PCB_Permissions {
      * Show access denied message
      * 
      * @param string $feature_name
+     * @param string $debug_info
      */
-    public static function show_access_denied($feature_name = 'この機能') {
+    public static function show_access_denied($feature_name = 'この機能', $debug_info = '') {
         $user_role = self::get_user_role_display();
         ?>
         <div class="wrap">
@@ -154,8 +155,16 @@ class PCB_Permissions {
                 <p><strong><?php echo esc_html($feature_name); ?></strong>にアクセスする権限がありません。</p>
                 <p>現在のユーザーロール: <strong><?php echo esc_html($user_role); ?></strong></p>
                 <p>この機能にアクセスするには、管理者または購読者である必要があります。</p>
+                
+                <?php if (!empty($debug_info)): ?>
+                    <div style="background: #f0f0f0; padding: 10px; margin: 10px 0; border-left: 4px solid #0073aa;">
+                        <h4>Debug Information:</h4>
+                        <p><?php echo wp_kses_post($debug_info); ?></p>
+                    </div>
+                <?php endif; ?>
             </div>
             <p><a href="<?php echo admin_url(); ?>" class="button">ダッシュボードに戻る</a></p>
+            <p><a href="<?php echo admin_url('admin.php?page=pcb-debug-permissions'); ?>" class="button">Debug Permissions</a></p>
         </div>
         <?php
     }

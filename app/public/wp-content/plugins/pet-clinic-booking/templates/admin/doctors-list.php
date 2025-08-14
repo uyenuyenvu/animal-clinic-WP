@@ -17,7 +17,7 @@ if (!PCB_Permissions::can_manage_doctors()) {
 
 // Get doctors data from database
 global $wpdb;
-$table_doctors = $wpdb->prefix . 'pcb_doctors';
+$table_doctors = $wpdb->prefix . 'clinic_clinics';
 $doctors = $wpdb->get_results("SELECT * FROM $table_doctors ORDER BY created_at DESC");
 
 // Helper function to get status text
@@ -62,7 +62,7 @@ function formatDate($dateString) {
                 <?php foreach ($doctors as $doctor): ?>
                     <div class="pcb-doctor-card">
                         <div class="pcb-doctor-header">
-                            <h3><?php echo esc_html($doctor->name); ?></h3>
+                            <h3><?php echo esc_html($doctor->doctor_in_charge); ?></h3>
                             <span class="pcb-status <?php echo getStatusClass($doctor->status); ?>">
                                 <?php echo getStatusText($doctor->status); ?>
                             </span>
@@ -71,7 +71,7 @@ function formatDate($dateString) {
                         <div class="pcb-doctor-details">
                             <div class="pcb-detail-field">
                                 <label>専門分野:</label>
-                                <div class="pcb-field-value"><?php echo esc_html($doctor->specialization); ?></div>
+                                <div class="pcb-field-value"><?php echo esc_html($doctor->facility_name); ?></div>
                             </div>
                             
                             <div class="pcb-detail-field">
