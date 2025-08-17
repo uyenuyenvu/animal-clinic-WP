@@ -1,779 +1,782 @@
 /* Pet Clinic Booking Admin Styles */
 #wpcontent {
-    height: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
+  height: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .pcb-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 /* Admin Form Styles */
 .pcb-admin-add-doctor,
 .pcb-admin-doctors-list {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    margin-bottom: 30px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-bottom: 30px;
 }
 
 .pcb-admin-add-doctor h1,
 .pcb-admin-doctors-list h1 {
-    color: #333;
-    margin-bottom: 30px;
-    text-align: center;
-    font-size: 2em;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 2em;
 }
 
 .pcb-form-section {
-    margin-bottom: 30px;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 6px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 6px;
 }
 
 .pcb-form-section h3 {
-    color: #495057;
-    margin-bottom: 20px;
-    font-size: 1.2em;
-    border-bottom: 2px solid #6C9FF5;
-    padding-bottom: 10px;
+  color: #495057;
+  margin-bottom: 20px;
+  font-size: 1.2em;
+  border-bottom: 2px solid #6c9ff5;
+  padding-bottom: 10px;
 }
 
 .pcb-form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
 }
 
 .pcb-form-group {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .pcb-form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #495057;
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #495057;
 }
 
 .pcb-form-group input,
 .pcb-form-group select,
 .pcb-form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #e9ecef;
-    border-radius: 6px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e9ecef;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
 }
 
 .pcb-form-group input:focus,
 .pcb-form-group select:focus,
 .pcb-form-group textarea:focus {
-    outline: none;
-    border-color: #6C9FF5;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  outline: none;
+  border-color: #6c9ff5;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
 }
 
 /* Button Styles */
 .pcb-btn {
-    display: inline-block;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: 600;
-    text-decoration: none;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin: 5px;
+  display: inline-block;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 5px;
 }
 
 .pcb-btn-primary {
-    background: #6C9FF5;
-    color: white;
+  background: #6c9ff5;
+  color: white;
 }
 
 .pcb-btn-primary:hover {
-    background: #0056b3;
-    transform: translateY(-2px);
+  background: #0056b3;
+  transform: translateY(-2px);
 }
 
 .pcb-btn-secondary {
-    background: #6c757d;
-    color: white;
+  background: #6c757d;
+  color: white;
 }
 
 .pcb-btn-secondary:hover {
-    background: #545b62;
-    transform: translateY(-2px);
+  background: #545b62;
+  transform: translateY(-2px);
 }
 
 .pcb-btn-danger {
-    background: #dc3545;
-    color: white;
+  background: #dc3545;
+  color: white;
 }
 
 .pcb-btn-danger:hover {
-    background: #c82333;
-    transform: translateY(-2px);
+  background: #c82333;
+  transform: translateY(-2px);
 }
 
 .pcb-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .pcb-form-actions,
 .pcb-admin-actions {
-    text-align: center;
+  text-align: center;
 }
 
 .pcb-btn-csv {
-    color: #6C9FF5;
-    border: none;
-    background: none;
-    font-weight: 300;
+  color: #6c9ff5;
+  border: none;
+  background: none;
+  font-weight: 300;
 }
 
 /* Doctors Grid */
 .pcb-doctors-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
 }
 
 .pcb-doctor-card {
-    background: #fff;
-    border: 1px solid #e9ecef;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .pcb-doctor-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .pcb-doctor-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e9ecef;
 }
 
 .pcb-doctor-header h3 {
-    margin: 0;
-    color: #333;
-    font-size: 1.2em;
+  margin: 0;
+  color: #333;
+  font-size: 1.2em;
 }
 
 .pcb-doctor-details p {
-    margin: 8px 0;
-    color: #666;
+  margin: 8px 0;
+  color: #666;
 }
 
 .pcb-doctor-actions {
-    margin-top: 15px;
-    text-align: right;
+  margin-top: 15px;
+  text-align: right;
 }
 
 /* Status Styles */
 .pcb-status {
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .pcb-status-active {
-    background: #d4edda;
-    color: #155724;
+  background: #d4edda;
+  color: #155724;
 }
 
 .pcb-status-inactive {
-    background: #f8d7da;
-    color: #721c24;
+  background: #f8d7da;
+  color: #721c24;
 }
 
 /* Loading and Error States */
 .pcb-loading {
-    text-align: center;
-    padding: 40px;
-    color: #666;
-    font-style: italic;
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-style: italic;
 }
 
 .pcb-error {
-    text-align: center;
-    padding: 20px;
-    background: #f8d7da;
-    color: #721c24;
-    border-radius: 6px;
-    margin: 20px 0;
+  text-align: center;
+  padding: 20px;
+  background: #f8d7da;
+  color: #721c24;
+  border-radius: 6px;
+  margin: 20px 0;
 }
 
 .pcb-empty {
-    text-align: center;
-    padding: 40px;
-    color: #666;
-    font-style: italic;
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-style: italic;
 }
 
 /* Admin Appointments List */
 .pcb-admin-appointments {
-    margin: 30px auto;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: #fff;
-    border-radius: 8px;
-    padding-bottom: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 30px auto;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #fff;
+  border-radius: 8px;
+  padding-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .pcb-admin-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
 
-    border-bottom: 2px solid #e9ecef;
+  border-bottom: 2px solid #e9ecef;
 }
 
 .pcb-admin-header h1 {
-    margin: 0;
-    color: #6C9FF5;
-    font-size: 2em;
-    font-weight: 600;
+  margin: 0;
+  color: #6c9ff5;
+  font-size: 2em;
+  font-weight: 600;
 }
 
 /* Search Section */
 .pcb-search-section {
-    padding: 20px;
+  padding: 20px;
 }
 
 .pcb-search-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(300px, 1fr)) auto;
-    gap: 15px;
-    align-items: end;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(300px, 1fr)) auto;
+  gap: 15px;
+  align-items: end;
 }
 .pcb-search-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  gap: 5px;
 }
 
 .pcb-search-item label {
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #495057;
-    font-size: 14px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #495057;
+  font-size: 14px;
 }
 
 .pcb-search-item input {
-    padding: 10px 12px;
-    border: 2px solid #e9ecef;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: border-color 0.3s ease;
-    width: 100%;
-    max-width: 260px;
+  padding: 10px 12px;
+  border: 2px solid #e9ecef;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+  width: 100%;
+  max-width: 260px;
 }
 
 .pcb-search-item input:focus {
-    outline: none;
-    border-color: #6C9FF5;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  outline: none;
+  border-color: #6c9ff5;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
 }
 
 .pcb-search-item button {
-    height: 42px;
-    margin-top: 20px;
+  height: 42px;
+  margin-top: 20px;
 }
 
 /* Table Container */
 .pcb-table-container {
-    background: #fff;
-    overflow: hidden;
-    margin-bottom: 30px;
+  background: #fff;
+  overflow: hidden;
+  margin-bottom: 30px;
 }
 
 .pcb-appointments-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
 }
 
 .pcb-appointments-table th {
-    background: #f8f9fa;
-    padding: 15px 12px;
-    text-align: left;
-    font-weight: 600;
-    color: #495057;
-    border-bottom: 2px solid #e9ecef;
-    white-space: nowrap;
+  background: #f8f9fa;
+  padding: 15px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #495057;
+  border-bottom: 2px solid #e9ecef;
+  white-space: nowrap;
 }
 
 .pcb-appointments-table td {
-    padding: 12px;
-    border-bottom: 1px solid #e9ecef;
-    vertical-align: middle;
+  padding: 12px;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: middle;
 }
 
 .pcb-appointments-table tbody tr:hover {
-    background: #f8f9fa;
+  background: #f8f9fa;
 }
 
 .pcb-appointments-table tbody tr:nth-child(even) {
-    background: #fafbfc;
+  background: #fafbfc;
 }
 
 .pcb-appointments-table tbody tr:nth-child(even):hover {
-    background: #f1f3f4;
+  background: #f1f3f4;
 }
 
 /* Detail Link */
 .pcb-detail-link {
-    color: #6C9FF5;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
+  color: #6c9ff5;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
 .pcb-detail-link:hover {
-    color: #0056b3;
-    text-decoration: underline;
+  color: #0056b3;
+  text-decoration: underline;
 }
 
 /* Status Styles */
 .pcb-status {
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    display: inline-block;
-    min-width: 80px;
-    text-align: center;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+  min-width: 80px;
+  text-align: center;
 }
 
 .pcb-status-pending {
-    background: #fff3cd;
-    color: #856404;
+  background: #fff3cd;
+  color: #856404;
 }
 
 .pcb-status-confirmed {
-    background: #d1ecf1;
-    color: #0c5460;
+  background: #d1ecf1;
+  color: #0c5460;
 }
 
 .pcb-status-completed {
-    background: #d4edda;
-    color: #155724;
+  background: #d4edda;
+  color: #155724;
 }
 
 .pcb-status-cancelled {
-    background: #f8d7da;
-    color: #721c24;
+  background: #f8d7da;
+  color: #721c24;
 }
 
 /* Pagination */
 .pcb-pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-top: 30px;
 }
 
 .pcb-page-btn {
-    padding: 8px 12px;
-    border: 1px solid #e9ecef;
-    background: #fff;
-    color: #495057;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
-    text-decoration: none;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  padding: 8px 12px;
+  border: 1px solid #e9ecef;
+  background: #fff;
+  color: #495057;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .pcb-page-btn-next,
 .pcb-page-btn-prev {
-    width: 40px;
+  width: 40px;
 }
 
 .text-bold {
-    font-weight: 700;
+  font-weight: 700;
 }
 
-
 .pcb-page-btn:hover {
-    background: #f8f9fa;
-    border-color: #6C9FF5;
+  background: #f8f9fa;
+  border-color: #6c9ff5;
 }
 
 .pcb-page-active {
-    background: #6C9FF5 !important;
-    color: #fff !important;
-    border-color: #6C9FF5 !important;
+  background: #6c9ff5 !important;
+  color: #fff !important;
+  border-color: #6c9ff5 !important;
 }
 
 .pcb-page-inactive {
-    background: #fff;
-    color: #495057;
+  background: #fff;
+  color: #495057;
 }
 
 /* Loading and Error States */
 .pcb-loading {
-    text-align: center;
-    padding: 40px;
-    color: #666;
-    font-style: italic;
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-style: italic;
 }
 
 .pcb-error {
-    text-align: center;
-    padding: 20px;
-    background: #f8d7da;
-    color: #721c24;
-    border-radius: 6px;
-    margin: 20px 0;
+  text-align: center;
+  padding: 20px;
+  background: #f8d7da;
+  color: #721c24;
+  border-radius: 6px;
+  margin: 20px 0;
 }
 
 .pcb-empty {
-    text-align: center;
-    padding: 40px;
-    color: #666;
-    font-style: italic;
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-style: italic;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .pcb-container {
-        padding: 10px;
-    }
+  .pcb-container {
+    padding: 10px;
+  }
 
-    .pcb-form-row {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
+  .pcb-form-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
 
-    .pcb-doctor-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
+  .pcb-doctor-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
 
-    .pcb-doctors-grid {
-        grid-template-columns: 1fr;
-    }
+  .pcb-doctors-grid {
+    grid-template-columns: 1fr;
+  }
 
-    .pcb-btn {
-        display: block;
-        width: 100%;
-        margin: 5px 0;
-    }
+  .pcb-btn {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+  }
 
-    .pcb-admin-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
+  .pcb-admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
 
-    .pcb-search-grid {
-        grid-template-columns: 1fr;
-    }
+  .pcb-search-grid {
+    grid-template-columns: 1fr;
+  }
 
-    .pcb-appointments-table {
-        font-size: 12px;
-    }
+  .pcb-appointments-table {
+    font-size: 12px;
+  }
 
-    .pcb-appointments-table th,
-    .pcb-appointments-table td {
-        padding: 8px 6px;
-    }
+  .pcb-appointments-table th,
+  .pcb-appointments-table td {
+    padding: 8px 6px;
+  }
 
-    .pcb-appointments-table {
-        overflow-x: auto;
-        display: block;
-    }
+  .pcb-appointments-table {
+    overflow-x: auto;
+    display: block;
+  }
 }
 
 /* Admin Appointment Detail */
 .pcb-admin-appointment-detail {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: #f8f9fa;
-    min-height: 100vh;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f8f9fa;
+  min-height: 100vh;
 }
 
 /* Header Section */
 .pcb-detail-header {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 25px;
-    margin-bottom: 20px;
-    border: 1px solid #e9ecef;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  margin-bottom: 20px;
+  border: 1px solid #e9ecef;
 }
 
 .pcb-detail-header h1 {
-    text-align: center;
-    margin: 0 0 20px 0;
-    color: #333;
-    font-size: 1.8em;
-    font-weight: 600;
+  text-align: center;
+  margin: 0 0 20px 0;
+  color: #333;
+  font-size: 1.8em;
+  font-weight: 600;
 }
 
 .pcb-detail-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .pcb-btn-back {
-    background: #6c757d;
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
+  background: #6c757d;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
 }
 
 .pcb-btn-back:hover {
-    background: #5a6268;
-    color: #fff;
+  background: #5a6268;
+  color: #fff;
 }
 
 .pcb-detail-info {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .pcb-info-item {
-    font-size: 14px;
-    color: #495057;
+  font-size: 14px;
+  color: #495057;
 }
 
 .pcb-info-item strong {
-    color: #333;
+  color: #333;
 }
 
 /* Main Content Sections */
 .pcb-detail-sections {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .pcb-detail-section {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 25px;
-    border: 1px solid #e9ecef;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  border: 1px solid #e9ecef;
 }
 
 .pcb-detail-section h3 {
-    margin: 0 0 20px 0;
-    color: #333;
-    font-size: 1.3em;
-    font-weight: 600;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #e9ecef;
+  margin: 0 0 20px 0;
+  color: #333;
+  font-size: 1.3em;
+  font-weight: 600;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e9ecef;
 }
 
 /* Field Layout */
 .pcb-detail-field {
-    display: flex;
-    margin-bottom: 15px;
-    align-items: flex-start;
+  display: flex;
+  margin-bottom: 15px;
+  align-items: flex-start;
 }
 
 .pcb-detail-field label {
-    min-width: 200px;
-    font-weight: 600;
-    color: #495057;
-    font-size: 14px;
-    margin-right: 15px;
-    padding-top: 2px;
+  min-width: 200px;
+  font-weight: 600;
+  color: #495057;
+  font-size: 14px;
+  margin-right: 15px;
+  padding-top: 2px;
 }
 
 .pcb-field-value {
-    flex: 1;
-    color: #333;
-    font-size: 15px;
-    line-height: 1.5;
-    word-break: break-word;
-    background: #f8f9fa;
-    border: 1px solid #e9ecef;
-    border-radius: 4px;
-    padding: 8px 12px;
-    min-height: 20px;
+  flex: 1;
+  color: #333;
+  font-size: 15px;
+  line-height: 1.5;
+  word-break: break-word;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  padding: 8px 12px;
+  min-height: 20px;
 }
 
 .pcb-btn-detail {
-    background: #6C9FF5;
-    color: #fff;
-    border: none;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    margin-left: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
+  background: #6c9ff5;
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .pcb-btn-detail:hover {
-    background: #0056b3;
-    color: #fff;
-    text-decoration: none;
+  background: #0056b3;
+  color: #fff;
+  text-decoration: none;
 }
 
 .pcb-file-link {
-    color: #6C9FF5;
-    text-decoration: none;
-    font-size: 14px;
+  color: #6c9ff5;
+  text-decoration: none;
+  font-size: 14px;
 }
 
 .pcb-file-link:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* Status Buttons */
 .pcb-status-buttons {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .pcb-status-btn {
-    padding: 8px 16px;
-    border: 2px solid;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background: #fff;
+  padding: 8px 16px;
+  border: 2px solid;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #fff;
 }
 
 .pcb-status-btn.pcb-status-pending {
-    border-color: #ffc107;
-    color: #856404;
+  border-color: #ffc107;
+  color: #856404;
 }
 
 .pcb-status-btn.pcb-status-pending:hover,
 .pcb-status-btn.pcb-status-pending.active {
-    background: #ffc107;
-    color: #fff;
+  background: #ffc107;
+  color: #fff;
 }
 
 .pcb-status-btn.pcb-status-completed {
-    border-color: #6c757d;
-    color: #495057;
+  border-color: #6c757d;
+  color: #495057;
 }
 
 .pcb-status-btn.pcb-status-completed:hover,
 .pcb-status-btn.pcb-status-completed.active {
-    background: #6c757d;
-    color: #fff;
+  background: #6c757d;
+  color: #fff;
 }
 
 .pcb-status-btn.pcb-status-cancelled {
-    border-color: #dc3545;
-    color: #721c24;
+  border-color: #dc3545;
+  color: #721c24;
 }
 
 .pcb-status-btn.pcb-status-cancelled:hover,
 .pcb-status-btn.pcb-status-cancelled.active {
-    background: #dc3545;
-    color: #fff;
+  background: #dc3545;
+  color: #fff;
 }
 
 /* Status Badge in Header */
 .pcb-status {
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    display: inline-block;
-    min-width: 80px;
-    text-align: center;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+  min-width: 80px;
+  text-align: center;
 }
 
 .pcb-status-pending {
-    background: #fff3cd;
-    color: #856404;
+  background: #fff3cd;
+  color: #856404;
 }
 
 .pcb-status-confirmed {
-    background: #d1ecf1;
-    color: #0c5460;
+  background: #d1ecf1;
+  color: #0c5460;
 }
 
 .pcb-status-completed {
-    background: #d4edda;
-    color: #155724;
+  background: #d4edda;
+  color: #155724;
 }
 
 .pcb-status-cancelled {
-    background: #f8d7da;
-    color: #721c24;
+  background: #f8d7da;
+  color: #721c24;
 }
 
 /* Responsive for detail page */
 @media (max-width: 768px) {
-    .pcb-detail-field {
-        flex-direction: column;
-        gap: 8px;
-    }
+  .pcb-detail-field {
+    flex-direction: column;
+    gap: 8px;
+  }
 
-    .pcb-detail-field label {
-        min-width: auto;
-        margin-right: 0;
-    }
+  .pcb-detail-field label {
+    min-width: auto;
+    margin-right: 0;
+  }
 
-    .pcb-detail-nav {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+  .pcb-detail-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    .pcb-detail-info {
-        flex-direction: column;
-        gap: 10px;
-    }
+  .pcb-detail-info {
+    flex-direction: column;
+    gap: 10px;
+  }
 
-    .pcb-status-buttons {
-        justify-content: center;
-    }
+  .pcb-status-buttons {
+    justify-content: center;
+  }
 }
+
