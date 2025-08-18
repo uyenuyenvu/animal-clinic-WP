@@ -115,6 +115,8 @@ function buildPaginationUrl($page, $params)
     $params['page_number'] = $page;
     return '?' . http_build_query($params);
 }
+
+
 ?>
 
 <div class="pcb-admin-appointments">

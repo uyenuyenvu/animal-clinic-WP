@@ -26,7 +26,7 @@ class PCB_CSV_Handler {
         }
 
         if (!is_user_logged_in()) {
-            auth_redirect(); // Redirect to login if not logged in
+            auth_redirect();
         }
         
         // Check permissions
@@ -48,31 +48,32 @@ class PCB_CSV_Handler {
         
         // Build WHERE clause for filtering
         global $wpdb;
-        $table_name = $wpdb->prefix . 'pcb_bookings';
+        $table_name = $wpdb->prefix . 'clinic_reservations';
         
         $where_conditions = array();
         $where_values = array();
         
         if (!empty($hospital_name)) {
-            $where_conditions[] = "referrer_clinic_name LIKE %s";
+            $where_conditions[] = "referrer_clinic_name  LIKE %s";
             $where_values[] = '%' . $hospital_name . '%';
         }
-        
+
         if (!empty($owner_name)) {
             $where_conditions[] = "owner_name LIKE %s";
             $where_values[] = '%' . $owner_name . '%';
         }
-        
+
         if (!empty($doctor_name)) {
             $where_conditions[] = "(referrer_director_name LIKE %s OR referrer_doctor_name LIKE %s)";
             $where_values[] = '%' . $doctor_name . '%';
             $where_values[] = '%' . $doctor_name . '%';
         }
-        
+
         if (!empty($department)) {
             $where_conditions[] = "department LIKE %s";
             $where_values[] = '%' . $department . '%';
         }
+
         
         $where_clause = '';
         if (!empty($where_conditions)) {
