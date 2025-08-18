@@ -24,6 +24,10 @@ class PCB_CSV_Handler {
         if (!isset($_GET['download']) || $_GET['download'] !== 'csv') {
             return;
         }
+
+        if (!is_user_logged_in()) {
+            auth_redirect(); // Redirect to login if not logged in
+        }
         
         // Check permissions
         if (!PCB_Permissions::can_export_csv()) {
