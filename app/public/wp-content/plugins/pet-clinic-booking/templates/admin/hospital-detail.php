@@ -31,6 +31,12 @@ $appointment_data = $plugin->get_appointment_detail($appointment_id);
 $doctor_id = $appointment_data ? $appointment_data->clinic_id : 0;
 $doctor_data = $doctor_id ? $plugin->get_doctor_detail($doctor_id) : null;
 
+function buildUrlBack() {
+  $params = array_merge($_GET, ['page'=> 'pcb-appointment-detail']);
+  $stringParams = http_build_query($params);
+  return admin_url('admin.php?' . $stringParams);
+}
+
 // // Get hospital data from appointment
 // $hospital_data = $plugin->get_hospital_data_from_appointment($appointment_data);
 
@@ -47,7 +53,7 @@ if (!$appointment_data) {
           <h1>ドクター登録名簿 (詳細)</h1>
         </div>
         <div class="pcb-detail-nav">
-            <a href="<?php echo admin_url('admin.php?page=pcb-appointment-detail&appointment_id=' . $appointment_id); ?>" class="pcb-btn-back">一覧に戻る</a>
+            <a href="<?php echo buildUrlBack(); ?>" class="pcb-btn-back">一覧に戻る</a>
         </div>
     </div>
 

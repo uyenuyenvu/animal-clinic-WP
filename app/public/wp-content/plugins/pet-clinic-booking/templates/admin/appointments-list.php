@@ -116,6 +116,14 @@ function buildPaginationUrl($page, $params)
     return '?' . http_build_query($params);
 }
 
+function buildUrlDetails($appointment_id)
+{
+  $params = array_merge($_GET, ['appointment_id'=> $appointment_id]);
+  $params['page'] = 'pcb-appointment-detail';
+  $stringParams = http_build_query($params);
+  return admin_url('admin.php?' . $stringParams);
+
+}
 
 ?>
 
@@ -188,7 +196,7 @@ function buildPaginationUrl($page, $params)
                     <?php foreach ($appointments as $appointment): ?>
                         <tr>
                             <td>
-                                <a href="<?php echo admin_url('admin.php?page=pcb-appointment-detail&appointment_id=' . $appointment->id); ?>"
+                                <a href="<?php echo buildUrlDetails($appointment->id); ?>"
                                     class="pcb-detail-link">表示</a>
                             </td>
                             <td><?php echo formatDateTime($appointment->created_at); ?></td>

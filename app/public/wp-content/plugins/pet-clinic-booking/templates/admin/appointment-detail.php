@@ -27,6 +27,20 @@ if (!$appointment) {
     return;
 }
 
+function buildUrlBack() {
+  $params = array_merge($_GET, ['page'=> 'pcb-appointments']);
+  unset($params['appointment_id']);
+  $stringParams = http_build_query($params);
+  return admin_url('admin.php?' . $stringParams);
+}
+
+function buildUrlHospitalDetail($appointment_id) {
+  $params = array_merge($_GET, ['appointment_id'=> $appointment_id]);
+  $params['page'] = 'pcb-hospital-detail';
+  $stringParams = http_build_query($params);
+  return admin_url('admin.php?' . $stringParams);
+}
+
 // Helper functions
 function getStatusClass($status) {
     switch($status) {
@@ -129,7 +143,7 @@ function formatAddress($address) {
           <h1>申し込み詳細 #<?php echo $appointment->code; ?></h1>
         </div>
         <div class="pcb-detail-nav">
-            <a href="<?php echo admin_url('admin.php?page=pcb-appointments'); ?>" class="pcb-btn-back">一覧に戻る</a>
+            <a href="<?php echo buildUrlBack(); ?>" class="pcb-btn-back">一覧に戻る</a>
             <div class="pcb-detail-info">
                 <span class="pcb-info-item"><strong>申し込みID:</strong> <?php echo esc_html($appointment->code); ?></span>
                 <span class="pcb-info-item"><strong>受付日時:</strong> <?php echo formatDateTime($appointment->created_at); ?></span>
@@ -178,7 +192,7 @@ function formatAddress($address) {
                 <label>病院名:</label>
                 <div class="pcb-field-value">
                     <?php echo esc_html($appointment->referrer_clinic_name ?: '-'); ?>
-                    <a href="<?php echo admin_url('admin.php?page=pcb-hospital-detail&appointment_id=' . $appointment_id); ?>" class="pcb-btn-detail">詳細を見る</a>
+                    <a href="<?php echo buildUrlHospitalDetail($appointment_id); ?>" class="pcb-btn-detail">詳細を見る</a>
                 </div>
             </div>
             <div class="pcb-detail-field">
