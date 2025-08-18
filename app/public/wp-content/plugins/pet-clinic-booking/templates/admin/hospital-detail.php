@@ -28,11 +28,11 @@ $plugin = new PetClinicBooking();
 
 // Get appointment and doctor data
 $appointment_data = $plugin->get_appointment_detail($appointment_id);
-$doctor_id = $appointment_data ? $appointment_data->doctor_id : 0;
+$doctor_id = $appointment_data ? $appointment_data->clinic_id : 0;
 $doctor_data = $doctor_id ? $plugin->get_doctor_detail($doctor_id) : null;
 
-// Get hospital data from appointment
-$hospital_data = $plugin->get_hospital_data_from_appointment($appointment_data);
+// // Get hospital data from appointment
+// $hospital_data = $plugin->get_hospital_data_from_appointment($appointment_data);
 
 // If no appointment found, show error
 if (!$appointment_data) {
@@ -41,11 +41,13 @@ if (!$appointment_data) {
 }
 ?>
 
-<div class="pcb-admin-container">
-    <div class="pcb-header">
-        <h1>ドクター登録名簿 (詳細)</h1>
-        <div class="pcb-header-actions">
-            <a href="<?php echo admin_url('admin.php?page=pcb-appointment-detail&appointment_id=' . $appointment_id); ?>" class="pcb-btn-secondary">一覧に戻る</a>
+<div class="wrap pcb-admin-appointment-detail">
+    <div class="pcb-detail-header">
+        <div class="pcb-detail-header-title">
+          <h1>ドクター登録名簿 (詳細)</h1>
+        </div>
+        <div class="pcb-detail-nav">
+            <a href="<?php echo admin_url('admin.php?page=pcb-appointment-detail&appointment_id=' . $appointment_id); ?>" class="pcb-btn-back">一覧に戻る</a>
         </div>
     </div>
 
@@ -60,71 +62,71 @@ if (!$appointment_data) {
                     <div class="pcb-detail-column">
                         <div class="pcb-detail-field">
                             <label>病院名:</label>
-                            <div class="pcb-field-value"><?php echo esc_html($hospital_data['clinic_name']); ?></div>
+                            <div class="pcb-field-value"><?php echo esc_html($doctor_data->clinic_name); ?></div>
                         </div>
                         
                         <div class="pcb-detail-field">
                             <label>院長名:</label>
-                            <div class="pcb-field-value"><?php echo esc_html($hospital_data['director_name']); ?></div>
+                            <div class="pcb-field-value"><?php echo esc_html($doctor_data->director_name); ?></div>
                         </div>
                         
                         <div class="pcb-detail-field">
                             <label>担当医:</label>
-                            <div class="pcb-field-value"><?php echo esc_html($hospital_data['doctor_in_charge']); ?></div>
+                            <div class="pcb-field-value"><?php echo esc_html($doctor_data->doctor_in_charge); ?></div>
                         </div>
                         
                         <div class="pcb-detail-field">
                             <label>メールアドレス:</label>
-                            <div class="pcb-field-value"><?php echo esc_html($hospital_data['email']); ?></div>
+                            <div class="pcb-field-value"><?php echo esc_html($doctor_data->email); ?></div>
                         </div>
                         
-<!--                        <div class="pcb-detail-field">-->
-<!--                            <label>メールアドレス(確認):</label>-->
-<!--                            <div class="pcb-field-value">--><?php //echo esc_html($hospital_data['email_confirm']); ?><!--</div>-->
-<!--                        </div>-->
+                        <div class="pcb-detail-field">
+                            <label>メールアドレス(確認):</label>
+                            <div class="pcb-field-value"><?php echo esc_html($doctor_data->email); ?></div>
+                        </div>
                         
                         <div class="pcb-detail-field">
                             <label>郵便番号:</label>
-                            <div class="pcb-field-value"><?php echo esc_html($hospital_data['postal_code']); ?></div>
+                            <div class="pcb-field-value"><?php echo esc_html($doctor_data->postal_code); ?></div>
                         </div>
                         
-<!--                        <div class="pcb-detail-field">-->
-<!--                            <label>パスワード:</label>-->
-<!--                            <div class="pcb-field-value">--><?php //echo esc_html($hospital_data['password']); ?><!--</div>-->
-<!--                        </div>-->
+                        <div class="pcb-detail-field">
+                            <label>パスワード:</label>
+                            <div class="pcb-field-value"><?php echo str_repeat('*', strlen(esc_html($doctor_data->password))); ?></div>
+                        </div>
                     </div>
                     
                     <!-- Right Column -->
                     <div class="pcb-detail-column">
                         <div class="pcb-detail-field">
                             <label>都道府県:</label>
-                            <div class="pcb-field-value"><?php echo esc_html($hospital_data['prefecture']); ?></div>
+                            <div class="pcb-field-value"><?php echo esc_html($doctor_data->prefecture); ?></div>
                         </div>
                         
                         <div class="pcb-detail-field">
                             <label>市区町村・町域:</label>
-                            <div class="pcb-field-value"><?php echo esc_html($hospital_data['city_address']); ?></div>
+                            <div class="pcb-field-value"><?php echo esc_html($doctor_data->city_address); ?></div>
                         </div>
                         
                         <div class="pcb-detail-field">
                             <label>番地・それ以降の住所:</label>
-                            <div class="pcb-field-value"><?php echo esc_html($hospital_data['building_name']); ?></div>
+                            <div class="pcb-field-value"><?php echo esc_html($doctor_data->building_name); ?></div>
                         </div>
                         
                         <div class="pcb-detail-field">
                             <label>電話番号:</label>
-                            <div class="pcb-field-value"><?php echo esc_html($hospital_data['phone_number']); ?></div>
+                            <div class="pcb-field-value"><?php echo esc_html($doctor_data->phone_number); ?></div>
                             <div class="pcb-field-note">電話番号はハイフンあり・なしどちらでも登録できます</div>
                         </div>
                         
                         <div class="pcb-detail-field">
                             <label>緊急連絡先 電話番号:</label>
-                            <div class="pcb-field-value"><?php echo esc_html($hospital_data['emergency_phone_number']); ?></div>
+                            <div class="pcb-field-value"><?php echo esc_html($doctor_data->emergency_phone_number); ?></div>
                         </div>
                         
                         <div class="pcb-detail-field">
                             <label>FAX番号:</label>
-                            <div class="pcb-field-value"><?php echo esc_html($hospital_data['fax_number']); ?></div>
+                            <div class="pcb-field-value"><?php echo esc_html($doctor_data->fax_number); ?></div>
                         </div>
                     </div>
                 </div>
@@ -177,9 +179,8 @@ if (!$appointment_data) {
 
 .pcb-content {
     background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     overflow: hidden;
+    padding: 0 20px 20px;
 }
 
 .pcb-detail-section h3 {

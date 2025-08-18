@@ -125,13 +125,15 @@ function formatAddress($address) {
 
 <div class="wrap pcb-admin-appointment-detail">
     <div class="pcb-detail-header">
-        <h1>申し込み詳細 #<?php echo $appointment->code; ?></h1>
+        <div class="pcb-detail-header-title">
+          <h1>申し込み詳細 #<?php echo $appointment->code; ?></h1>
+        </div>
         <div class="pcb-detail-nav">
-            <a href="<?php echo admin_url('admin.php?page=pcb-appointments'); ?>" class="pcb-btn-back">← 一覧に戻る</a>
+            <a href="<?php echo admin_url('admin.php?page=pcb-appointments'); ?>" class="pcb-btn-back">一覧に戻る</a>
             <div class="pcb-detail-info">
                 <span class="pcb-info-item"><strong>申し込みID:</strong> <?php echo esc_html($appointment->code); ?></span>
-                <span class="pcb-info-item"><strong>ステータス:</strong> <span class="pcb-status <?php echo getStatusClass($appointment->status); ?>"><?php echo getStatusText($appointment->status); ?></span></span>
                 <span class="pcb-info-item"><strong>受付日時:</strong> <?php echo formatDateTime($appointment->created_at); ?></span>
+                <span class="pcb-info-item"><strong>ステータス:</strong> <span class="pcb-status <?php echo getStatusClass($appointment->status); ?>"><?php echo getStatusText($appointment->status); ?></span></span>
             </div>
         </div>
     </div>
@@ -289,8 +291,7 @@ function formatAddress($address) {
             <div class="pcb-detail-field">
                 <label>送信ファイル:</label>
                 <div class="pcb-field-value">
-                    <a href="#" class="pcb-file-link">血液検査.DICOM</a><br>
-                    <a href="#" class="pcb-file-link">X線画像.DICOM</a>
+                  <a href="<?php echo $appointment->test_data_file_path; ?>" class="pcb-file-link">血液検査.DICOM</a><br>
                 </div>
             </div>
         </div>
@@ -299,8 +300,14 @@ function formatAddress($address) {
         <div class="pcb-detail-section">
             <h3>個人情報について</h3>
             <div class="pcb-detail-field">
-                <label>学術利用同意:</label>
-                <div class="pcb-field-value"><?php echo $appointment->academic_publication_consent === 'agreed' ? '同意する' : '不同意'; ?></div>
+                <label>送信ファイル:</label>
+                <div class="pcb-field-value">
+                    <a href="<?php echo esc_url($appointment->test_data_file_path); ?>" 
+                      class="pcb-file-link" 
+                      download>
+                        血液検査.DICOM
+                    </a>
+                </div>
             </div>
         </div>
 

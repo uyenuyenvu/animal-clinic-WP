@@ -150,9 +150,9 @@ class PetClinicBooking {
 
         // Extract hospital information from appointment data
         $hospital_data = array(
-            'hospital_name' => $appointment->referral_hospital ?: 'サンプル動物病院',
-            'director_name' => $appointment->hospital_director ?: '山田 太郎',
-            'doctor_in_charge' => $appointment->assigned_doctor ?: '佐藤 花子',
+            'hospital_name' => $appointment->clinic_name ?: 'サンプル動物病院',
+            'director_name' => $appointment->director_name ?: '山田 太郎',
+            'doctor_in_charge' => $appointment->doctor_in_charge ?: '佐藤 花子',
             'email' => $appointment->customer_email ?: 'yamada@example.com',
             'email_confirm' => $appointment->customer_email ?: 'yamada@example.com',
             'postal_code' => $this->extractPostalCode($appointment->customer_address) ?: '〒100-0001',
