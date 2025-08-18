@@ -25,8 +25,8 @@ class PCB_CSV_Handler {
             return;
         }
 
-        if (!is_user_logged_in()) {
-            auth_redirect(); // Redirect to login if not logged in
+        if (!is_user_logged_in()) {
+            auth_redirect(); // Redirect to login if not logged in
         }
         
         // Check permissions
