@@ -305,7 +305,11 @@ function formatAddress($address) {
             <div class="pcb-detail-field">
                 <label>送信ファイル:</label>
                 <div class="pcb-field-value">
-                  <a href="<?php echo $appointment->test_data_file_path; ?>" class="pcb-file-link">血液検査.DICOM</a><br>
+                    <a href="<?php echo esc_url($appointment->test_data_file_path); ?>" 
+                      class="pcb-file-link" 
+                      download>
+            <?php echo isset($appointment->test_data_file_path) ? basename($appointment->test_data_file_path) :  ""; ?>
+                    </a>
                 </div>
             </div>
         </div>
@@ -315,13 +319,8 @@ function formatAddress($address) {
             <h3>個人情報について</h3>
             <div class="pcb-detail-field">
                 <label>送信ファイル:</label>
-                <div class="pcb-field-value">
-                    <a href="<?php echo esc_url($appointment->test_data_file_path); ?>" 
-                      class="pcb-file-link" 
-                      download>
-                        血液検査.DICOM
-                    </a>
-                </div>
+
+                <div class="pcb-field-value"><?php echo esc_html($appointment->academic_publication_consent); ?></div>
             </div>
         </div>
 
