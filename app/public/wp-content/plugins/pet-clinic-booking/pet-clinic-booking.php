@@ -265,6 +265,7 @@ class PetClinicBooking {
         
         return $street ?: '1-1-1 サンプルビル 3F';
     }
+
 }
 
 // Initialize the plugin

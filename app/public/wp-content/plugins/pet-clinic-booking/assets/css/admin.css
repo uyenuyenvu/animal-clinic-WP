@@ -4,6 +4,10 @@
   padding-left: 20px;
   padding-right: 20px;
 }
+#adminmenu .toplevel_page_pcb-appointments .wp-submenu li a[href*="pcb-appointment-detail"], 
+#adminmenu .toplevel_page_pcb-appointments .wp-submenu li a[href*="pcb-hospital-detail"] {
+    display: none;
+}
 .pcb-container {
   max-width: 1200px;
   margin: 0 auto;

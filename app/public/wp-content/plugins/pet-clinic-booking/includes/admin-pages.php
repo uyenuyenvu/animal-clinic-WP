@@ -35,41 +35,10 @@ class PCB_Admin_Pages {
             array($this, 'appointments_list_page')
         );
         
-        // Only show doctor management for administrators
-        if (PCB_Permissions::can_manage_doctors()) {
-            add_submenu_page(
-                'pcb-appointments',
-                'ドクター一覧',
-                'ドクター一覧',
-                'read',
-                'pcb-doctors',
-                array($this, 'doctors_list_page')
-            );
-            
-            add_submenu_page(
-                'pcb-appointments',
-                'ドクター追加',
-                'ドクター追加',
-                'read',
-                'pcb-add-doctor',
-                array($this, 'add_doctor_page')
-            );
-        }
         
         // Register the page without adding it to menu
         add_action('admin_menu', array($this, 'register_hidden_page'), 999);
-        
-        // Add debug page for development
-        if (defined('WP_DEBUG') && WP_DEBUG) {
-            add_submenu_page(
-                'pcb-appointments',
-                'Debug Permissions',
-                'Debug Permissions',
-                'read',
-                'pcb-debug-permissions',
-                array($this, 'debug_permissions_page')
-            );
-        }
+
     }
     
     public function enqueue_admin_scripts($hook) {
@@ -152,7 +121,7 @@ class PCB_Admin_Pages {
      */
     public function register_hidden_page() {
         add_submenu_page(
-            null, // No parent menu
+            'pcb-appointments', // No parent menu
             '申し込み詳細',
             '申し込み詳細',
             'read', // Use 'read' capability for subscribers
@@ -162,7 +131,7 @@ class PCB_Admin_Pages {
         
         // Register hospital detail page
         add_submenu_page(
-            null, // No parent menu
+            'pcb-appointments', // No parent menu
             '病院詳細',
             '病院詳細',
             'read', // Use 'read' capability for subscribers
@@ -170,6 +139,8 @@ class PCB_Admin_Pages {
             array($this, 'hospital_detail_page')
         );
     }
+
+
 }
 
 new PCB_Admin_Pages();
