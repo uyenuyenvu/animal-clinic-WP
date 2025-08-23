@@ -36,7 +36,7 @@ class PetClinicBooking {
 
     public function init() {
         // Add rewrite rules for custom pages
-        add_action('init', array($this, 'add_rewrite_rules'));
+//        add_action('init', array($this, 'add_rewrite_rules'));
         add_filter('query_vars', array($this, 'add_query_vars'));
 
         add_action('wp_ajax_pcb_admin_update_appointment_status', array($this, 'ajax_admin_update_appointment_status'));

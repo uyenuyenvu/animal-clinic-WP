@@ -70,37 +70,29 @@ $query_values = array_merge($where_values, array($per_page, $offset));
 $appointments = $wpdb->get_results($wpdb->prepare($query, $query_values));
 
 // Helper functions
-function getStatusClass($status)
+function getStatusClass($status): string
 {
-    switch ($status) {
-        case 'pending':
-            return 'pcb-status-pending';
-        case 'confirmed':
-            return 'pcb-status-confirmed';
-        case 'completed':
-            return 'pcb-status-completed';
-        case 'cancelled':
-            return 'pcb-status-cancelled';
-        default:
-            return 'pcb-status-pending';
-    }
+    return match ($status) {
+        2, 'temporary' => 'pcb-status-temporary',
+        3, 'confirmed' => 'pcb-status-confirmed',
+        4, 'cancelled' => 'pcb-status-cancelled',
+        5, 'changing' => 'pcb-status-changing',
+        default => 'pcb-status-pending',
+    };
 }
 
-function getStatusText($status)
+function getStatusText($status): string
 {
-    switch ($status) {
-        case 'pending':
-            return '受付中';
-        case 'confirmed':
-            return '確認済み';
-        case 'completed':
-            return '完了';
-        case 'cancelled':
-            return 'キャンセル';
-        default:
-            return '受付中';
-    }
+    return match ($status) {
+        'pending', 1 => '受付中',
+        'temporary', 2 => '仮予約',
+        'confirmed', 3 => '予約確定',
+        'cancelled', 4 => 'キャンセル済',
+        'changing', 5 => '変更依頼中',
+        default => '不明な状態',
+    };
 }
+
 
 function formatDateTime($dateTimeString)
 {

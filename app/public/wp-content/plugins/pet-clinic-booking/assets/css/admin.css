@@ -376,23 +376,28 @@
 }
 
 .pcb-status-pending {
-  background: #fef1cc;
-  color: #856404;
+    background: #fff3cd;
+    color: #856404;
+}
+
+.pcb-status-temporary {
+    background: #d1ecf1;
+    color: #0c5460;
 }
 
 .pcb-status-confirmed {
-  background: #d1ecf2;
-  color: #0c5460;
-}
-
-.pcb-status-completed {
-  background: #e1e2e4;
-  color: #6c757d;
+    background: #d4edda;
+    color: #155724;
 }
 
 .pcb-status-cancelled {
-  background: #f8d7da;
-  color: #721c24;
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.pcb-status-changing {
+    background: #ede7f6; /* light purple (lavender) */
+    color: #4527a0;     /* deep purple */
 }
 
 /* Pagination */
@@ -703,37 +708,59 @@
   background: #fff;
 }
 
+/* Pending */
 .pcb-status-btn.pcb-status-pending {
-  border-color: #ffc107;
-  color: #856404;
+    border-color: #ffc107;
+    color: #856404;
 }
-
 .pcb-status-btn.pcb-status-pending:hover,
 .pcb-status-btn.pcb-status-pending.active {
-  background: #ffc107;
-  color: #fff;
+    background: #ffc107;
+    color: #fff;
 }
 
-.pcb-status-btn.pcb-status-completed {
-  border-color: #6c757d;
-  color: #495057;
+/* Temporary (仮予約) */
+.pcb-status-btn.pcb-status-temporary {
+    border-color: #17a2b8;
+    color: #0c5460;
+}
+.pcb-status-btn.pcb-status-temporary:hover,
+.pcb-status-btn.pcb-status-temporary.active {
+    background: #17a2b8;
+    color: #fff;
 }
 
-.pcb-status-btn.pcb-status-completed:hover,
-.pcb-status-btn.pcb-status-completed.active {
-  background: #6c757d;
-  color: #fff;
+/* Confirmed (予約確定) */
+.pcb-status-btn.pcb-status-confirmed {
+    border-color: #28a745;  /* success green */
+    color: #155724;         /* dark green */
+}
+.pcb-status-btn.pcb-status-confirmed:hover,
+.pcb-status-btn.pcb-status-confirmed.active {
+    background: #28a745;    /* success green */
+    color: #fff;
 }
 
+/* Cancelled (キャンセル済) */
 .pcb-status-btn.pcb-status-cancelled {
-  border-color: #dc3545;
-  color: #721c24;
+    border-color: #dc3545;
+    color: #721c24;
 }
-
 .pcb-status-btn.pcb-status-cancelled:hover,
 .pcb-status-btn.pcb-status-cancelled.active {
-  background: #dc3545;
-  color: #fff;
+    background: #dc3545;
+    color: #fff;
+}
+
+/* Changing (変更依頼中) */
+.pcb-status-btn.pcb-status-changing {
+    border-color: #6f42c1;
+    color: #4527a0;
+}
+.pcb-status-btn.pcb-status-changing:hover,
+.pcb-status-btn.pcb-status-changing.active {
+    background: #6f42c1;
+    color: #fff;
 }
 
 /* Status Badge in Header */
@@ -748,23 +775,28 @@
 }
 
 .pcb-status-pending {
-  background: #fff3cd;
-  color: #856404;
+    background: #fff3cd;
+    color: #856404;
+}
+
+.pcb-status-temporary {
+    background: #d1ecf1;
+    color: #0c5460;
 }
 
 .pcb-status-confirmed {
-  background: #d1ecf1;
-  color: #0c5460;
-}
-
-.pcb-status-completed {
-  background: #d4edda;
-  color: #155724;
+    background: #d4edda;
+    color: #155724;
 }
 
 .pcb-status-cancelled {
-  background: #f8d7da;
-  color: #721c24;
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.pcb-status-changing {
+    background: #ede7f6; /* light purple (lavender) */
+    color: #4527a0;     /* deep purple */
 }
 
 /* Responsive for detail page */
